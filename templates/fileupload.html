@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Upload</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+      
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-top: 50px;
+      }
+      
+      form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      
+      input[type="file"] {
+        display: block;
+        margin: 0 auto;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-in-out;
+      }
+      
+      input[type="file"]:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      button[type="submit"] {
+        display: block;
+        margin: 0 auto;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #333;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: #555;
+        cursor: pointer;
+      }
+      
+      p {
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+    a {
+        text-decoration: none;
+        color: #4CAF50;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+    }
+
+    a:hover {
+        color: #2C8C99;
+    }
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.button:active {
+    background-color: #367c39;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+    </style>
+</head>
+<body>
+    <h1>Welcome {{ session['username'] }}!</h1>
+    <h1>File Upload</h1>
+    {% if message %}
+    <p>{{ message }}</p>
+    <p>File Hash: {{ file_hash }}</p>
+    {% endif %}
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <br>
+      <br>
+      <button type="submit">Upload</button>
+    </form>
+    <br>
+        <div class="button-container">
+        <a href="{{ url_for('blockchain_display') }}" class="button">View Blockchain</a>
+        <a href="{{ url_for('index') }}">Logout</a>
+    </div>
+</body>
+</html>

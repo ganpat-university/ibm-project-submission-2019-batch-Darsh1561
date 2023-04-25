@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain</title>
+    <script type="text/javascript">
+        function viewFile(element) {
+            // Get the value of the filename column
+            var filename = element.parentNode.parentNode.children[3].innerText;
+  
+            // Use the filename to display the file
+            // ...
+            alert("The file " + filename + " is verified by the app. \nFile will be downloaded now.");
+            window.open("/download/" + filename,"_blank")
+        }
+    </script>
+</head>
+<body>
+    <h1>Blockchain</h1>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>Timestamp</th>
+            <th>Uploaded by</th>
+            <th>File Name</th>
+            <th>Previous Hash</th>
+            <th>View File</th>
+        </tr>
+        {% for block in blockchain %}
+        <tr>
+            <td>{{ block.index }}</td>
+            <td>{{ block.timestamp }}</td>
+            <td>{{ block.uploaded_by }}</td>
+            <td>{{ block.file_name }}</td>
+            <td>{{ block.previous_hash }}</td>
+            <td><button onclick="viewFile(this)">View File</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div class="button-container">
+        <a href="{{ url_for('upload_file') }}" class="button">Upload File</a>
+        <a href="{{ url_for('index') }}">Logout</a>
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+    
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 80%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+    
+    th, td {
+        text-align: left;
+        padding: 12px;
+    }
+    
+    th {
+        background-color: #4CAF50;
+        color: #fff;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    tr:hover {
+        background-color: #e5e5e5;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #4CAF50;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+    }
+
+    a:hover {
+        color: #2C8C99;
+    }
+    
+    .button {
+        display: inline-block;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:hover {
+        background-color: #3e8e41;
+    }
+
+    .button:active {
+        background-color: #367c39;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.button:active {
+    background-color: #367c39;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+</style>
